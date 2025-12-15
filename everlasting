@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everlasting Memories - Obituaries & Memorials</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary-color: #2c3e50;
+--secondary-color: #5d7a9c;
+--accent-color: #a87868;
+--light-color: #f8f9fa;
+--dark-color: #1a2530;
+--text-color: #333;
+--text-light: #777;
+--shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+--transition: all 0.3s ease;
+}
+
+body {
+font-family: 'Lato', sans-serif;
+line-height: 1.6;
+color: var(--text-color);
+background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Playfair Display', serif;
+font-weight: 600;
+color: var(--primary-color);
+}
+
+.container {
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 15px;
+}
+
+/* Header Styles */
+header {
+background-color: var(--primary-color);
+color: white;
+padding: 20px 0;
+box-shadow: var(--shadow);
+}
+
+.header-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+font-family: 'Playfair Display', serif;
+font-size: 28px;
+font-weight: 600;
+color: white;
+text-decoration: none;
+display: flex;
+align-items: center;
+}
+
+.logo i {
+margin-right: 10px;
+color: var(--accent-color);
+}
+
+nav ul {
+display: flex;
+list-style: none;
+}
+
+nav ul li {
+margin-left: 25px;
+}
+
+nav ul li a {
+color: white;
+text-decoration: none;
+font-weight: 400;
+font-size: 16px;
+transition: var(--transition);
+padding: 5px 0;
+position: relative;
+}
+
+nav ul li a:hover {
+color: var(--accent-color);
+}
+
+nav ul li a.active {
+color: var(--accent-color);
+}
+
+nav ul li a.active:after {
+content: '';
+position: absolute;
+width: 100%;
+height: 2px;
+background-color: var(--accent-color);
+bottom: -5px;
+left: 0;
+}
+
+.mobile-menu-btn {
+display: none;
+background: none;
+border: none;
+color: white;
+font-size: 24px;
+cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+background-size: cover;
+background-position: center;
+color: white;
+text-align: center;
+padding: 100px 0;
+margin-bottom: 50px;
+}
+
+.hero h1 {
+font-size: 48px;
+margin-bottom: 20px;
+color: white;
+}
+
+.hero p {
+font-size: 20px;
+max-width: 700px;
+margin: 0 auto 30px;
+color: rgba(255, 255, 255, 0.9);
+}
+
+.search-box {
+max-width: 600px;
+margin: 30px auto 0;
+display: flex;
+}
+
+.search-box input {
+flex: 1;
+padding: 15px 20px;
+border: none;
+border-radius: 4px 0 0 4px;
+font-size: 16px;
+}
+
+.search-box button {
+background-color: var(--accent-color);
+color: white;
+border: none;
+padding: 0 25px;
+border-radius: 0 4px 4px 0;
+cursor: pointer;
+font-size: 16px;
+transition: var(--transition);
+}
+
+.search-box button:hover {
+background-color: #946b5c;
+}
+
+/* Recent Obituaries */
+.section-title {
+text-align: center;
+margin-bottom: 40px;
+position: relative;
+}
+
+.section-title h2 {
+font-size: 36px;
+display: inline-block;
+padding-bottom: 15px;
+}
+
+.section-title h2:after {
+content: '';
+position: absolute;
+width: 80px;
+height: 3px;
+background-color: var(--accent-color);
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.obituaries-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 30px;
+margin-bottom: 60px;
+}
+
+.obituary-card {
+background-color: white;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--shadow);
+transition: var(--transition);
+}
+
+.obituary-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.obituary-img {
+height: 250px;
+overflow: hidden;
+position: relative;
+}
+
+.obituary-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: var(--transition);
+}
+
+.obituary-card:hover .obituary-img img {
+transform: scale(1.05);
+}
+
+.obituary-content {
+padding: 25px;
+}
+
+.obituary-content h3 {
+font-size: 22px;
+margin-bottom: 10px;
+}
+
+.obituary-dates {
+color: var(--text-light);
+font-size: 15px;
+margin-bottom: 15px;
+display: flex;
+align-items: center;
+}
+
+.obituary-dates i {
+margin-right: 8px;
+color: var(--accent-color);
+}
+
+.obituary-content p {
+color: var(--text-light);
+margin-bottom: 20px;
+}
+
+.obituary-meta {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 15px;
+border-top: 1px solid #eee;
+}
+
+.obituary-service {
+font-size: 14px;
+color: var(--secondary-color);
+}
+
+.btn {
+display: inline-block;
+background-color: var(--secondary-color);
+color: white;
+padding: 10px 20px;
+border-radius: 4px;
+text-decoration: none;
+font-weight: 600;
+transition: var(--transition);
+border: none;
+cursor: pointer;
+font-size: 15px;
+}
+
+.btn:hover {
+background-color: var(--primary-color);
+color: white;
+}
+
+.btn-light {
+background-color: transparent;
+color: var(--secondary-color);
+border: 1px solid var(--secondary-color);
+}
+
+.btn-light:hover {
+background-color: var(--secondary-color);
+color: white;
+}
+
+/* Featured Obituary */
+.featured-obituary {
+background-color: white;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--shadow);
+margin-bottom: 60px;
+display: flex;
+flex-direction: column;
+}
+
+@media (min-width: 768px) {
+.featured-obituary {
+flex-direction: row;
+}
+}
+
+.featured-img {
+flex: 1;
+min-height: 400px;
+}
+
+.featured-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.featured-content {
+flex: 1;
+padding: 40px;
+}
+
+.featured-content h3 {
+font-size: 28px;
+margin-bottom: 15px;
+}
+
+.featured-dates {
+font-size: 16px;
+color: var(--text-light);
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+}
+
+.featured-content p {
+margin-bottom: 25px;
+line-height: 1.8;
+}
+
+/* Services Section */
+.services {
+background-color: var(--light-color);
+padding: 60px 0;
+margin: 60px 0;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 30px;
+}
+
+.service-card {
+background-color: white;
+padding: 30px;
+border-radius: 8px;
+text-align: center;
+box-shadow: var(--shadow);
+transition: var(--transition);
+}
+
+.service-card:hover {
+transform: translateY(-10px);
+}
+
+.service-icon {
+font-size: 40px;
+color: var(--accent-color);
+margin-bottom: 20px;
+}
+
+.service-card h3 {
+font-size: 22px;
+margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+background-color: var(--dark-color);
+color: white;
+padding: 60px 0 30px;
+}
+
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 40px;
+margin-bottom: 40px;
+}
+
+.footer-column h3 {
+color: white;
+font-size: 20px;
+margin-bottom: 20px;
+padding-bottom: 10px;
+border-bottom: 2px solid var(--accent-color);
+display: inline-block;
+}
+
+.footer-links {
+list-style: none;
+}
+
+.footer-links li {
+margin-bottom: 10px;
+}
+
+.footer-links a {
+color: #bbb;
+text-decoration: none;
+transition: var(--transition);
+}
+
+.footer-links a:hover {
+color: var(--accent-color);
+padding-left: 5px;
+}
+
+.copyright {
+text-align: center;
+padding-top: 30px;
+border-top: 1px solid #333;
+color: #aaa;
+font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+.hero h1 {
+font-size: 40px;
+}
+
+.section-title h2 {
+font-size: 32px;
+}
+}
+
+@media (max-width: 768px) {
+.header-container {
+flex-direction: column;
+text-align: center;
+}
+
+.logo {
+margin-bottom: 15px;
+}
+
+nav ul {
+margin-top: 15px;
+}
+
+nav ul li {
+margin-left: 15px;
+margin-right: 15px;
+}
+
+.hero {
+padding: 70px 0;
+}
+
+.hero h1 {
+font-size: 32px;
+}
+
+.hero p {
+font-size: 18px;
+}
+
+.search-box {
+flex-direction: column;
+}
+
+.search-box input {
+border-radius: 4px;
+margin-bottom: 10px;
+}
+
+.search-box button {
+border-radius: 4px;
+padding: 15px;
+}
+
+.obituaries-grid {
+grid-template-columns: 1fr;
+}
+
+.featured-content {
+padding: 25px;
+}
+}
+
+@media (max-width: 576px) {
+.mobile-menu-btn {
+display: block;
+position: absolute;
+top: 20px;
+right: 20px;
+}
+
+nav {
+display: none;
+width: 100%;
+margin-top: 20px;
+}
+
+nav.active {
+display: block;
+}
+
+nav ul {
+flex-direction: column;
+}
+
+nav ul li {
+margin: 10px 0;
+}
+
+.hero {
+padding: 50px 0;
+}
+
+.hero h1 {
+font-size: 28px;
+}
+
+.section-title h2 {
+font-size: 28px;
+}
+
+.obituary-card, .service-card {
+margin: 0 10px;
+}
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="container header-container">
+<a href="#" class="logo">
+<i class="fas fa-dove"></i>
+Everlasting Memories
+</a>
+
+<button class="mobile-menu-btn" id="mobileMenuBtn">
+<i class="fas fa-bars"></i>
+</button>
+
+<nav id="mainNav">
+<ul>
+<li><a href="#" class="active">Home</a></li>
+<li><a href="#obituaries">Obituaries</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<h1>Honoring Life, Aina Kawonise O Celebrating Memory</h1>
+<p>Find obituaries, share condolences, and celebrate the lives of loved ones who have passed away.</p>
+
+<div class="search-box">
+<input type="text" placeholder="Search for a loved one by name...">
+<button type="submit"><i class="fas fa-search"></i> Search</button>
+</div>
+</div>
+</section>
+
+<!-- Recent Obituaries -->
+<section class="container" id="obituaries">
+<div class="section-title">
+<h2>Recent Obituaries</h2>
+</div>
+
+<div class="obituaries-grid">
+<!-- Obituary 1 - Aina Kawonise O -->
+<div class="obituary-card">
+<div class="obituary-img">
+    <!-- We'll load the image dynamically with JavaScript -->
+    <img id="aina-photo" 
+         src="https://docs.google.com/uc?id=1JteB_S7kXrLy2JbOBQ6rJzxst1XLWCcI" 
+         alt="Aina Kawonise O"
+         onerror="loadAlternativeImage()">
+</div>
+<div class="obituary-content">
+    <h3>Aina Kawonise O</h3>
+    <div class="obituary-dates">
+        <i class="fas fa-calendar-alt"></i>
+        <span>April 12, 1948 - September 5, 2023</span>
+    </div>
+    <p>Aina passed away peacefully at home surrounded by family. She was a beloved wife, mother, and grandmother who touched many lives through her kindness and generosity. Her memory will live on in the hearts of all who knew her.</p>
+    <div class="obituary-meta">
+        <div class="obituary-service">
+            <i class="fas fa-church"></i>
+            Service: Sep 12, 2023 at 2:00 PM
+        </div>
+        <a href="#" class="btn btn-light">View Tribute</a>
+    </div>
+</div>
+</div>
+
+<!-- Obituary 2 -->
+<div class="obituary-card">
+<div class="obituary-img">
+<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Margaret Thompson">
+</div>
+<div class="obituary-content">
+<h3>Margaret Anne Thompson</h3>
+<div class="obituary-dates">
+<i class="fas fa-calendar-alt"></i>
+<span>July 3, 1935 - August 28, 2023</span>
+</div>
+<p>Margaret was a devoted teacher for over 35 years, a passionate gardener, and a pillar of her community. She will be remembered for her sharp wit and compassionate heart.</p>
+<div class="obituary-meta">
+<div class="obituary-service">
+<i class="fas fa-church"></i>
+Service: Sep 9, 2023 at 11:00 AM
+</div>
+<a href="#" class="btn btn-light">View Tribute</a>
+</div>
+</div>
+</div>
+
+<!-- Obituary 3 -->
+<div class="obituary-card">
+<div class="obituary-img">
+<img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="David Chen">
+</div>
+<div class="obituary-content">
+<h3>David Michael Chen</h3>
+<div class="obituary-dates">
+<i class="fas fa-calendar-alt"></i>
+<span>November 18, 1972 - August 20, 2023</span>
+</div>
+<p>David was a talented musician and loving father who brought joy to everyone he met. His legacy lives on through his music and the many lives he touched.</p>
+<div class="obituary-meta">
+<div class="obituary-service">
+<i class="fas fa-church"></i>
+Service: Aug 30, 2023 at 3:00 PM
+</div>
+<a href="#" class="btn btn-light">View Tribute</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="text-center" style="text-align: center; margin-bottom: 60px;">
+<a href="#" class="btn">View All Obituaries</a>
+</div>
+</section>
+
+<!-- Featured Obituary -->
+<section class="container">
+<div class="section-title">
+<h2>Featured Memorial</h2>
+</div>
+
+<div class="featured-obituary">
+<div class="featured-img">
+<img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80" alt="Eleanor Johnson">
+</div>
+<div class="featured-content">
+<h3>Eleanor Grace Johnson</h3>
+<div class="featured-dates">
+<i class="fas fa-calendar-alt"></i>
+<span>January 5, 1942 - July 15, 2023</span>
+</div>
+<p>Eleanor Grace Johnson, 81, of Oakwood, passed away on July 15, 2023. She was a beloved wife, mother, grandmother, and great-grandmother who dedicated her life to her family and community.</p>
+<p>Eleanor was an active volunteer at the local food bank for over 20 years and was known for her incredible baking skills, especially her famous apple pie that won first place at the county fair for five consecutive years.</p>
+<p>She is survived by her husband of 58 years, Charles; three children; seven grandchildren; and two great-grandchildren. A celebration of life will be held on July 25, 2023 at Oakwood Community Church.</p>
+<div style="margin-top: 30px;">
+<a href="#" class="btn" style="margin-right: 15px;">Leave Condolences</a>
+<a href="#" class="btn btn-light">View Full Obituary</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+<div class="container">
+<div class="section-title">
+<h2>Our Services</h2>
+</div>
+
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-book-open"></i>
+</div>
+<h3>Obituary Publishing</h3>
+<p>We help families create meaningful obituaries that honor their loved ones' lives and legacies.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-hand-holding-heart"></i>
+</div>
+<h3>Grief Support</h3>
+<p>Resources and counseling services to help you through the grieving process.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-video"></i>
+</div>
+<h3>Virtual Memorials</h3>
+<p>Create online memorial pages where friends and family can share memories and condolences.</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-ribbon"></i>
+</div>
+<h3>Celebration of Life</h3>
+<p>Planning and coordination for memorial services that celebrate a life well-lived.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+<div class="container">
+<div class="footer-content">
+<div class="footer-column">
+<h3>Everlasting Memories</h3>
+<p>A place to honor, remember, and celebrate the lives of those we've lost. We provide compassionate support and resources during difficult times.</p>
+<p style="margin-top: 15px;">
+<i class="fas fa-phone" style="margin-right: 10px;"></i> (555) 123-4567<br>
+<i class="fas fa-envelope" style="margin-right: 10px;"></i> info@everlastingmemories.com
+</p>
+</div>
+
+<div class="footer-column">
+<h3>Quick Links</h3>
+<ul class="footer-links">
+<li><a href="#">Recent Obituaries</a></li>
+<li><a href="#">Submit an Obituary</a></li>
+<li><a href="#">Plan a Service</a></li>
+<li><a href="#">Grief Resources</a></li>
+<li><a href="#">Flower Delivery</a></li>
+</ul>
+</div>
+
+<div class="footer-column">
+<h3>Resources</h3>
+<ul class="footer-links">
+<li><a href="#">Writing an Obituary</a></li>
+<li><a href="#">Funeral Etiquette</a></li>
+<li><a href="#">Grief Support Groups</a></li>
+<li><a href="#">Legal Checklist</a></li>
+<li><a href="#">FAQs</a></li>
+</ul>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2023 Everlasting Memories. All rights reserved. | Designed with compassion and respect</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Mobile menu toggle
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+const nav = document.getElementById('mainNav');
+nav.classList.toggle('active');
+
+// Change icon
+const icon = this.querySelector('i');
+if (icon.classList.contains('fa-bars')) {
+icon.classList.remove('fa-bars');
+icon.classList.add('fa-times');
+} else {
+icon.classList.remove('fa-times');
+icon.classList.add('fa-bars');
+}
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('nav a').forEach(link => {
+link.addEventListener('click', function(e) {
+if(this.getAttribute('href').startsWith('#')) {
+e.preventDefault();
+
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+
+if(targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+
+// Close mobile menu if open
+const nav = document.getElementById('mainNav');
+const menuBtn = document.getElementById('mobileMenuBtn');
+const icon = menuBtn.querySelector('i');
+
+if(nav.classList.contains('active')) {
+nav.classList.remove('active');
+icon.classList.remove('fa-times');
+icon.classList.add('fa-bars');
+}
+}
+}
+});
+});
+
+// Simulate search functionality
+document.querySelector('.search-box button').addEventListener('click', function() {
+const searchInput = document.querySelector('.search-box input');
+if(searchInput.value.trim() !== '') {
+alert(`Searching for "${searchInput.value}". In a real implementation, this would show search results.`);
+searchInput.value = '';
+}
+});
+
+// Allow Enter key to trigger search
+document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+if(e.key === 'Enter') {
+document.querySelector('.search-box button').click();
+}
+});
+
+// Function to load Aina's photo with multiple fallback options
+function loadAinaPhoto() {
+    const photoElement = document.getElementById('aina-photo');
+    const imageUrls = [
+        // Try multiple Google Drive formats
+        'https://docs.google.com/uc?id=1JteB_S7kXrLy2JbOBQ6rJzxst1XLWCcI',
+        'https://drive.google.com/uc?export=view&id=1JteB_S7kXrLy2JbOBQ6rJzxst1XLWCcI',
+        'https://lh3.googleusercontent.com/d/1JteB_S7kXrLy2JbOBQ6rJzxst1XLWCcI',
+        'https://drive.google.com/thumbnail?id=1JteB_S7kXrLy2JbOBQ6rJzxst1XLWCcI&sz=w1000',
+        // Fallback to a placeholder image if Google Drive doesn't work
+        'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    ];
+    
+    let currentIndex = 0;
+    
+    function tryNextImage() {
+        if (currentIndex < imageUrls.length) {
+            photoElement.src = imageUrls[currentIndex];
+            currentIndex++;
+        }
+    }
+    
+    // Check if the image loaded successfully
+    photoElement.onload = function() {
+        console.log('Image loaded successfully:', photoElement.src);
+    };
+    
+    photoElement.onerror = function() {
+        console.log('Failed to load image, trying next option...');
+        tryNextImage();
+    };
+    
+    // Start trying images
+    tryNextImage();
+}
+
+// Load Aina's photo when page loads
+window.addEventListener('DOMContentLoaded', loadAinaPhoto);
+
+// Alternative function if the first image fails
+function loadAlternativeImage() {
+    const photoElement = document.getElementById('aina-photo');
+    // Fallback to a beautiful memorial-themed image
+    photoElement.src = 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+    photoElement.alt = 'In Loving Memory - Aina Kawonise O';
+}
+</script>
+</body>
+</html>
