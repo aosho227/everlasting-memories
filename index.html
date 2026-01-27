@@ -784,30 +784,6 @@ Service: Aug 30, 2023 at 3:00 PM
 </div>
 </div>
 </footer>
-
-<!--widget configuration -->
-<script>
-    window.chatwidgetconfig = {
-        webhook: {
-            url: 'https://kenosho.app.n8n.cloud/webhook/e104e40e-6134-4825-a6f0-8a646d882662/chat',
-            route: 'general'
-        },
-        branding: {
-            logo: '<your company logo URL>',
-            name: 'everlasting.com', //USA
-            welcomeText: 'Hi, How can we help?', //welcome message
-        },
-        style: {
-            primaryColor: '#854fff', //primary color
-            secondaryColor: '#6b3fd4', //secondary color
-            position: 'right', //position of the widget (left or right)
-            backgroundColor: '#ffffff', //Background color of the chat widget
-            fontColor: '#333333' //Text color for messages and interface
-        }
-    };
-</script>
-<script src="https://cdn.jsdelivr.net/gh/WayneSimpson/n8n-chatbot-template@ba944c3/chat-widget.js"></script>
-<!-- Widget script -->
     
 <script>
 // Mobile menu toggle
@@ -921,3 +897,27 @@ function loadAlternativeImage() {
 </script>
 </body>
 </html>
+<!--widget configuration -->
+<script>
+    window.chatwidgetconfig = {
+        webhook: {
+            url: 'https://kenosho.app.n8n.cloud/webhook/e104e40e-6134-4825-a6f0-8a646d882662/chat',
+            route: 'general'
+        },
+        branding: {
+            logo: '<your company logo URL>',
+            name: 'everlasting.com', //USA
+            welcomeText: 'Hi, How can we help?', //welcome message
+            responseTimeText: 'we typically respond right away' //Response time message
+        },
+        style: {
+            primaryColor: '#854fff', //primary color
+            secondaryColor: '#6b3fd4', //secondary color
+            position: 'right', //position of the widget (left or right)
+            backgroundColor: '#ffffff', //Background color of the chat widget
+            fontColor: '#333333' //Text color for messages and interface
+        }
+    };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/WayneSimpson/n8n-chatbot-template@ba944c3/chat-widget.js"></script>
+<!-- Widget script -->
