@@ -785,6 +785,120 @@ Service: Aug 30, 2023 at 3:00 PM
 </div>
 </footer>
 
+    <script>
+  window.N8N_CHAT_CONFIG = {
+    webhookUrl: "http://localhost:5678/webhook/e104e40e-6134-4825-a6f0-8a646d882662/chat",
+    title: "Chat with us",
+    subtitle: "Powered by n8n",
+    placeholder: "Type your message...",
+    primaryColor: "#4f46e5",
+    position: "bottom-right", // bottom-left | bottom-right
+    sessionId: () => crypto.randomUUID(), // or your own user/session id
+  };
+</script>
+
+<script>
+(function () {
+  const cfg = window.N8N_CHAT_CONFIG;
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    #n8n-chat-btn {
+      position: fixed;
+      ${cfg.position === "bottom-left" ? "left:20px" : "right:20px"};
+      bottom: 20px;
+      background: ${cfg.primaryColor};
+      color: white;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+    }
+    #n8n-chat-box {
+      position: fixed;
+      ${cfg.position === "bottom-left" ? "left:20px" : "right:20px"};
+      bottom: 90px;
+      width: 320px;
+      height: 420px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #n8n-chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    #n8n-chat-input {
+      display: flex;
+      border-top: 1px solid #eee;
+    }
+    #n8n-chat-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const btn = document.createElement("button");
+  btn.id = "n8n-chat-btn";
+  btn.innerText = "💬";
+
+  const box = document.createElement("div");
+  box.id = "n8n-chat-box";
+  box.innerHTML = `
+    <div style="padding:10px;background:${cfg.primaryColor};color:white">
+      <strong>${cfg.title}</strong><br/>
+      <small>${cfg.subtitle}</small>
+    </div>
+    <div id="n8n-chat-messages"></div>
+    <div id="n8n-chat-input">
+      <input id="n8n-msg" placeholder="${cfg.placeholder}" />
+    </div>
+  `;
+
+  document.body.appendChild(btn);
+  document.body.appendChild(box);
+
+  btn.onclick = () =>
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+
+  document.getElementById("n8n-msg").addEventListener("keydown", async (e) => {
+    if (e.key !== "Enter") return;
+
+    const input = e.target;
+    const msg = input.value;
+    input.value = "";
+
+    const messages = document.getElementById("n8n-chat-messages");
+    messages.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+
+    const res = await fetch(cfg.webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: msg,
+        sessionId: cfg.sessionId()
+      })
+    });
+
+    const data = await res.json();
+    messages.innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+    messages.scrollTop = messages.scrollHeight;
+  });
+})();
+</script>
+
+
 <script>
 // Mobile menu toggle
 document.getElementById('mobileMenuBtn').addEventListener('click', function() {
